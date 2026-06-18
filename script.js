@@ -100,3 +100,6 @@ const tracklist = [
     discImageSrc: "images/disc_creator_music_box_exposed.png" // Full orange colored vinyl
   }
 ];
+let currentTrackIndex = 0;
+let isPlaying = false;
+document.getElementById()
