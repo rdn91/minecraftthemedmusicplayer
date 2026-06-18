@@ -96,12 +96,23 @@ function load_track(index) {
   audioPlayer.src = currentTrack.audioSrc;
   trackTitleDisplay.innerText = "Now Playing: " + currentTrack.name;
 }
-function togglePlay() {
-  
-}
-function togglePause() {
 
+function togglePlay() {
+  const playIcon = playbutton.querySelector("");
+
+  if (isPlaying) {
+    audioPlayer.pause();
+    isPlaying = false;
+    playIcon.className = "";
+  }
+  else {
+    audioPlayer.play();
+    isPlaying = true;
+    playIcon.className = ""
+  }
 }
+
+
 function nextSong() {
   if (currentTrackIndex == 19) {
     currentTrackIndex = 0
@@ -114,6 +125,8 @@ function nextSong() {
     audioPlayer.play();
   }
 }
+
+
 function prevSong() {
   if (currentTrackIndex == 0) {
     currentTrackIndex = 19;
@@ -126,3 +139,9 @@ function prevSong() {
     audioPlayer.play();
     }
 }
+
+playbutton.addEventListener("click", togglePlay);
+nextbutton.addEventListener("click", nextSong);
+prevbutton.addEventListener("click", prevSong);
+
+load_track(currentTrackIndex);
