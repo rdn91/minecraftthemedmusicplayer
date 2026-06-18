@@ -12,11 +12,15 @@
         <img src="images/minecraft-image.png">
             
             <div class="audio-player">
-                <h2 class="now-playing"></h2>
-                <input type="range" min="0" max="100">
-                <button id="prev-button" class="buttons"></button>
-                <button id="play-button" class="buttons"></button>
-                <button id="next-button" class="buttons"></button>
+                <div class="text-info">
+                    <h2 class="now-playing"></h2>
+                    <h5 class="duration"></h5>
+                </div>
+                
+                <input type="range" id="slider">
+                <button id="prev-button" class="buttons">◀◀</button>
+                <button id="play-button" class="buttons">▶</button>
+                <button id="next-button" class="buttons">▶▶</button>
                 <audio></audio>
             </div>
        

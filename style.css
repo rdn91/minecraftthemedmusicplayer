@@ -41,28 +41,25 @@ body {
     padding: 20px;
     
 }
+#slider {
+    margin: 20px;
+}
 .buttons{
+    background-image: url(images/grassblock.png);
+    background-size: cover;
+    image-rendering: pixelated;
     margin: 10px;
     flex-direction: row;
-    color: white;
+    color: black;
     border: none;
-    width: 20px;
-    height: 20px;
-    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
     cursor: pointer;
     padding: 10px;
-    transition: background 0.2s;
 }
-.buttons:hover {
-    
-}
-
-#prev-button {
-    
-}
-#play-button {
-
-}
-#next-button {
-
+.text-info {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
 }

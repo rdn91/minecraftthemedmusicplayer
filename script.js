@@ -78,19 +78,31 @@ const tracklist = [
   {
     name: "Creator - Music Box Version (Lena Raine)",
     audioSrc: "audio/lena_raine_creator_music_box.mp3"
+  },
+  {
+    name: "Tears (Amos Roddy)",
+    audioSrc: "audio/amos_roddy_tears.mp3"
+  },
+  {
+    name: "Lava Chicken (Hyper Potions)",
+    audioSrc: "audio/hyper_potions_lava_chicken.mp3"
+  },
+  {
+    name: "Bounce (fingerspit)",
+    audioSrc: "audio/fingerspit_bounce.mp3"
   }
 ];
 
 
 let currentTrackIndex = 0;
 let isPlaying = false;
-
+const slider = document.getElementById("slider")
 const prevbutton = document.getElementById("prev-button");
 const playbutton = document.getElementById("play-button");
 const nextbutton = document.getElementById("next-button");
 const trackTitleDisplay = document.querySelector(".now-playing");
 const audioPlayer = document.querySelector("audio");
-
+const currentTrackDuration = document.querySelector(".duration")
 function load_track(index) {
   const currentTrack = tracklist[index];
   audioPlayer.src = currentTrack.audioSrc;
@@ -98,29 +110,28 @@ function load_track(index) {
 }
 
 function togglePlay() {
-  const playIcon = playbutton.querySelector("");
 
   if (isPlaying) {
     audioPlayer.pause();
     isPlaying = false;
-    playIcon.className = "";
+    playbutton.innerText = "▶"
   }
   else {
     audioPlayer.play();
     isPlaying = true;
-    playIcon.className = ""
+    playbutton.innerText = "❚❚"
   }
 }
 
 
 function nextSong() {
-  if (currentTrackIndex == 19) {
+  if (currentTrackIndex == 22) {
     currentTrackIndex = 0
   }
   else {
     currentTrackIndex += 1
-  load_track(currentTrackIndex);
   }
+  load_track(currentTrackIndex);
   if (isPlaying) {
     audioPlayer.play();
   }
@@ -129,12 +140,14 @@ function nextSong() {
 
 function prevSong() {
   if (currentTrackIndex == 0) {
-    currentTrackIndex = 19;
+    currentTrackIndex = 22;
   }
   else {
     currentTrackIndex -= 1;
   }
-  
+
+  load_track(currentTrackIndex);
+
   if (isPlaying) {
     audioPlayer.play();
     }
@@ -144,4 +157,25 @@ playbutton.addEventListener("click", togglePlay);
 nextbutton.addEventListener("click", nextSong);
 prevbutton.addEventListener("click", prevSong);
 
+audioPlayer.addEventListener("loadedmetadata", () => {
+  slider.max = audioPlayer.duration;
+
+  let minutes = Math.floor(audioPlayer.duration / 60);
+  let seconds = Math.floor(audioPlayer.duration % 60);
+  if (seconds < 10) seconds = "0" + seconds; 
+  
+  currentTrackDuration.innerText = minutes + ":" + seconds;
+});
+
+audioPlayer.addEventListener("timeupdate", () => {
+  slider.value = audioPlayer.currentTime;
+});
+
+slider.addEventListener("input", () => {
+  audioPlayer.currentTime = slider.value;
+});
+
+audioPlayer.addEventListener("ended", nextSong);
+
 load_track(currentTrackIndex);
+
