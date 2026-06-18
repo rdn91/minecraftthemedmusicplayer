@@ -94,7 +94,7 @@ const audioPlayer = document.querySelector("audio");
 function load_track(index) {
   const currentTrack = tracklist[index];
   audioPlayer.src = currentTrack.audioSrc;
-  trackTitleDisplay.name = "Now Playing: " + currentTrack.name;
+  trackTitleDisplay.innerText = "Now Playing: " + currentTrack.name;
 }
 function togglePlay() {
   
@@ -103,17 +103,26 @@ function togglePause() {
 
 }
 function nextSong() {
-  if currentTrackIndex == 19:
+  if (currentTrackIndex == 19) {
     currentTrackIndex = 0
-  else:
+  }
+  else {
     currentTrackIndex += 1
   load_track(currentTrackIndex);
+  }
+  if (isPlaying) {
+    audioPlayer.play();
+  }
 }
 function prevSong() {
-  if currentTrackIndex == 0:
-    currentTrack = 19;
-  else:
+  if (currentTrackIndex == 0) {
+    currentTrackIndex = 19;
+  }
+  else {
     currentTrackIndex -= 1;
+  }
   
-  load_track(currentTrackIndex);
+  if (isPlaying) {
+    audioPlayer.play();
+    }
 }
